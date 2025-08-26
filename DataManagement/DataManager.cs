@@ -37,6 +37,12 @@
             if (File.Exists(path))
                 File.Delete(path);
         }
+        public string[]? GetValues(string path) {
+            if (!Directory.Exists(path))
+                return null;
+
+            return Directory.GetFiles(path);
+        }
 
         public T? GetObject<T>(string name) where T : class {
             var directoryPath = Objects.GetDirectoryPath<T>();
@@ -59,6 +65,13 @@
                 return;
 
             DeleteValue(path);
+        }
+        public string[]? GetObjects<T>() where T : class {
+            var directoryPath = Objects.GetDirectoryPath<T>();
+            if (directoryPath is null)
+                return null;
+
+            return GetValues(directoryPath);
         }
 
         public T? GetClass<T>() where T : class {

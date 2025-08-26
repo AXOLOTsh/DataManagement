@@ -15,5 +15,8 @@
         public void DeleteValue(string path);
         public void DeleteObject<T>(T value) where T : class;
         public void DeleteClass<T>(T value) where T : class;
+
+        public string[]? GetValues(string path);
+        public string[]? GetObjects<T>() where T : class;
     }
 }
